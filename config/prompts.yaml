@@ -1,0 +1,49 @@
+prompts:
+  extraction:
+    system: "You are a precise data extraction assistant. Return only valid JSON."
+    user_template: |
+      You are extracting structured data from an OCR-scanned deed.
+
+      Given the text below, extract ALL fields listed and return a single JSON object.
+      Every key MUST be present in the output. If a value is missing or cannot be determined, return null.
+
+      OCR Text:
+      {ocr_text}
+
+      Extraction rules:
+      - county: County name EXACTLY as written in the document (including abbreviations).
+
+      Fields to extract:
+      - doc_number
+      - county
+      - state
+      - date_signed (YYYY-MM-DD)
+      - date_recorded (YYYY-MM-DD)
+      - grantor
+      - grantee
+      - amount_numeric (number only)
+      - amount_written (exact text)
+      - apn
+      - status
+
+      Return ONLY valid JSON.
+      Do NOT omit any keys.
+      Do NOT include markdown or explanations.
+
+  county_matching:
+    system: "You are a county name matching assistant. Return only the county name."
+    user_template: |
+      Given the county name "{county_name}"{state_context}, determine the correct canonical county name from our database.
+
+      IMPORTANT RULES:
+      - Match ONLY county names, NOT city names (e.g., "San Jose" is a city in Santa Clara County, NOT a county itself)
+      - Match ONLY if you are highly confident it's a valid county name from the database
+      - If the input is a city name, state name, or not a county, return null
+      - Abbreviations are acceptable (e.g., "S. Clara" -> "Santa Clara", "S. Cruz" -> "Santa Cruz")
+
+      Available counties include: {available_counties_sample}... (and {total_counties} more)
+      {matches_context}
+
+      Return ONLY the canonical county name that best matches "{county_name}". 
+      If you cannot determine with high confidence that it's a county name, return null.
+      Return ONLY the county name, no explanations, no JSON, no markdown.

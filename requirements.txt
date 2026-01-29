@@ -1,1 +1,8 @@
-openai>=1.0.0
+openai
+dotenv
+fastapi
+pydantic
+rapidfuzz
+pyyaml
+uvicorn
+python-multipart

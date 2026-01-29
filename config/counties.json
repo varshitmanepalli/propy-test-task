@@ -1,0 +1,15 @@
+[
+  { "name": "Santa Clara", "tax_rate": 0.012 },
+  { "name": "San Mateo", "tax_rate": 0.011 },
+  { "name": "Santa Cruz", "tax_rate": 0.010 },
+  { "name": "Los Angeles", "tax_rate": 0.0078 },
+  { "name": "San Francisco", "tax_rate": 0.0112 },
+  { "name": "Orange", "tax_rate": 0.0089 },
+  { "name": "San Diego", "tax_rate": 0.0077 },
+  { "name": "Riverside", "tax_rate": 0.0068 },
+  { "name": "Sacramento", "tax_rate": 0.0057 },
+  { "name": "Alameda", "tax_rate": 0.0104 },
+  { "name": "Contra Costa", "tax_rate": 0.0101 },
+  { "name": "Ventura","tax_rate": 0.0088 },
+  { "name": "Fresno","tax_rate": 0.0043 }
+]

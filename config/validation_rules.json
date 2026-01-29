@@ -1,0 +1,29 @@
+{
+  "validation_rules": [
+    {
+      "name": "date_logic",
+      "type": "comparison",
+      "field1": "date_recorded",
+      "field2": "date_signed",
+      "operator": "<",
+      "error_type": "DateLogicError",
+      "error_message": "Invalid date logic: Document was recorded on {date_recorded} but signed on {date_signed}. Recording cannot occur before signing."
+    },
+    {
+      "name": "money_consistency",
+      "type": "custom",
+      "function": "validate_money",
+      "fields": ["amount_numeric", "amount_written"],
+      "error_type": "MoneyMismatchError",
+      "tolerance": 0.01
+    }
+  ],
+  "enrichment_rules": [
+    {
+      "name": "closing_costs",
+      "type": "calculation",
+      "formula": "{amount_numeric} * {tax_rate}",
+      "output_field": "closing_costs"
+    }
+  ]
+}
