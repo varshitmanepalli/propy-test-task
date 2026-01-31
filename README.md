@@ -252,34 +252,6 @@ The validator raises specific exceptions for different error types:
 - `MoneyMismatchError`: Raised when written amount doesn't match numeric amount
 - `CountyNotFoundError`: Raised when county cannot be matched
 
-## Engineering Highlights
-
-### Error Handling
-- Custom exception hierarchy with clear, actionable error messages
-- Proper exception propagation and HTTP status codes in API
-
-### Code Structure
-- Separation of concerns: extraction, enrichment, validation
-- Dataclass for structured data (`ExtractedDeed`)
-- Type hints throughout
-- Well-documented functions
-
-### Deterministic Validation
-- Date validation: Pure Python datetime comparison
-- Money validation: Deterministic word-to-number conversion
-- County matching: Rule-based fuzzy matching with LLM fallback only when needed
-
-### Testability
-- Each validation function can be tested independently
-- No hidden state or side effects in validation logic
-- Clear input/output contracts
-
-### Maintainability
-- Declarative configuration files
-- Centralized prompt management
-- Modular package structure
-- Professional project layout
-
 ## Why This Approach?
 
 1. **Paranoid Engineering**: We don't trust the LLM for critical logic - we use it for what it's good at (parsing) and validate with code
@@ -287,22 +259,4 @@ The validator raises specific exceptions for different error types:
 3. **Maintainability**: Easy to add new validation rules without touching LLM prompts
 4. **Reliability**: Deterministic code will catch errors consistently, regardless of LLM behavior
 5. **Professional Structure**: Clean architecture that scales and is easy to understand
-
-## Future Enhancements
-
-- [ ] Comprehensive unit test suite
-- [ ] Support for additional LLM providers (Anthropic, etc.)
-- [ ] Batch processing support
-- [ ] Logging and audit trail
-- [ ] Database integration for county data
-- [ ] Docker containerization
-- [ ] CI/CD pipeline
-- [ ] Performance optimization and caching
-
-## License
-
-MIT License
-
-## Contributing
-
 Contributions are welcome! Please feel free to submit a Pull Request.
